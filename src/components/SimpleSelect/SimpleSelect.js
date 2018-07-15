@@ -13,6 +13,19 @@ import Module3 from '../../modules/Module3.js'
 import Paper from '@material-ui/core/Paper';
 import Panel from '../Panel/Panel'
 import DropDown from '../DropDown/DropDown'
+import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
+const SortableItem = SortableElement(({value}) => <li>{value}</li>);
+
+const SortableList = SortableContainer(({items}) => {
+  return (
+    <ul>
+      {items.map((value, index) => (
+        <SortableItem key={`item-${index}`} index={index} value={value} />
+      ))}
+    </ul>
+  );
+});
+
 
 const styles = theme => ({
   root: {
@@ -29,8 +42,6 @@ const styles = theme => ({
 });
 
 class SimpleSelect extends React.Component {
-
-
   constructor(props) {
     super(props);
   }
@@ -49,8 +60,8 @@ class SimpleSelect extends React.Component {
     return (<div class="selectedModules">
       {
         this.props.todos.map(function(todo, i) {
-          return (<li data-id={i} key={i}>
-            <Paper >
+          return (
+            <Paper data-id={i} key={i}>
             <DropDown/>
               <div className='deleteButton'>
                 <button onClick={() => {
@@ -68,9 +79,7 @@ class SimpleSelect extends React.Component {
                     UP
                   </button>
               }
-            </Paper>
-
-          </li>)
+            </Paper>)
         }, this)
       }
     </div>);

@@ -8,6 +8,7 @@ import SimpleSelect from '../components/SimpleSelect/SimpleSelect'
 import AddButton from '../components/Button/AddButton'
 import TodoList from './ToDoList'
 import './css/pages.css'
+import SortableComponent from '../components/Sortable/Sortable'
 
 const styles = theme => ({
   root: {
@@ -75,13 +76,10 @@ class CreateModule extends React.Component {
    render() {
        return(
            <div>
-
                <form onSubmit = {(e) => this.addTodo(e)}>
                    <button type="submit">ADD MODULE</button>
                </form>
                <SimpleSelect todos={this.state.todos} upToDo = {this.upToDo} removeTodo={this.removeTodo} count={this.state.count}/>
-
-
            </div>
        );
    }
